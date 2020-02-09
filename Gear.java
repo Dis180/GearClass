@@ -1,7 +1,10 @@
 /**
- * Base class for Gear object.
+ * Base class for Gear object. To reduce complexity, only spur gears are considered. All parameter
+ * values are based on the standards for coarse pitch mild steel gears.
  *
  * @author Austin Paulick
+ * @author Cory Heatwole
+ * @author Sam Rennu
  */
 
 public class Gear
