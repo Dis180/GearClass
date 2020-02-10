@@ -26,41 +26,6 @@ public class Gear
     // Valid diametral pitches
     private static final Set<Integer> validDiametralPitches = Set.of(32, 24, 20, 16, 12, 10, 8, 6, 5);
 
-    // Valid numbers of teeth (function instead of variable since values depend on diametral pitch)
-    private static Set<Integer> getValidNumbersOfTeeth(int diametralPitch)
-    {
-	switch (diametralPitch)
-	{
-	    case validDiametralPitches.toArray()[0]:
-		return Set.of(12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128);
-	    case validDiametralPitches.toArray()[1]:
-		return Set.of(12, 15, 18, 21, 24, 27, 30, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144);
-	    case validDiametralPitches.toArray()[2]:
-		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 30, 35, 40, 45, 50, 60, 70, 80, 84, 90, 100,
-		        120, 140, 160, 180, 200);
-	    case validDiametralPitches.toArray()[3]:
-		return Set.of(12, 14, 15, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 60, 64, 72, 80, 96,
-		        128, 144, 160, 192);
-	    case validDiametralPitches.toArray()[4]:
-		return Set.of(12, 13, 14, 15, 16, 18, 20, 21, 24, 28, 30, 36, 42, 48, 54, 60, 66, 72, 84,
-		        96, 108, 120, 132, 144, 168, 192, 216);
-	    case validDiametralPitches.toArray()[5]:
-		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 48, 50, 55, 60, 70, 80,
-		        90, 100, 120, 140, 160, 200);
-	    case validDiametralPitches.toArray()[6]:
-		return Set.of(12, 14, 15, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44, 48, 56, 60, 64, 72, 80,
-		        88, 96, 112, 120, 128);
-	    case validDiametralPitches.toArray()[7]:
-		return Set.of(12, 14, 15, 16, 18, 21, 24, 27, 30, 33, 36, 42, 48, 54, 60, 66, 72, 84, 96,
-		        108, 120);
-	    case validDiametralPitches.toArray()[8]:
-		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 50, 60, 70, 80, 100, 110,
-		        120, 140, 160, 180);
-	    default:
-		return Set.of(0);
-	}
-    }
-
     // Valid pressure angles
     private static final Set<Double> validPressureAngles = Set.of(14.5, 20.0, 25.0);
 	    
@@ -212,5 +177,50 @@ public class Gear
 		if( this.m_rpm != -1){
 			m_nextGear.drive(m_rpm,m_numberOfTeeth);
 		}
+    }
+    
+    // Valid numbers of teeth (function instead of variable since values depend on diametral pitch)
+    public static Set<Integer> getValidNumbersOfTeeth(int diametralPitch)
+    {
+	switch (diametralPitch)
+	{
+	    case validDiametralPitches.toArray()[0]:
+		return Set.of(12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128);
+	    case validDiametralPitches.toArray()[1]:
+		return Set.of(12, 15, 18, 21, 24, 27, 30, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144);
+	    case validDiametralPitches.toArray()[2]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 30, 35, 40, 45, 50, 60, 70, 80, 84, 90, 100,
+		        120, 140, 160, 180, 200);
+	    case validDiametralPitches.toArray()[3]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 60, 64, 72, 80, 96,
+		        128, 144, 160, 192);
+	    case validDiametralPitches.toArray()[4]:
+		return Set.of(12, 13, 14, 15, 16, 18, 20, 21, 24, 28, 30, 36, 42, 48, 54, 60, 66, 72, 84,
+		        96, 108, 120, 132, 144, 168, 192, 216);
+	    case validDiametralPitches.toArray()[5]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 48, 50, 55, 60, 70, 80,
+		        90, 100, 120, 140, 160, 200);
+	    case validDiametralPitches.toArray()[6]:
+		return Set.of(12, 14, 15, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44, 48, 56, 60, 64, 72, 80,
+		        88, 96, 112, 120, 128);
+	    case validDiametralPitches.toArray()[7]:
+		return Set.of(12, 14, 15, 16, 18, 21, 24, 27, 30, 33, 36, 42, 48, 54, 60, 66, 72, 84, 96,
+		        108, 120);
+	    case validDiametralPitches.toArray()[8]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 50, 60, 70, 80, 100, 110,
+		        120, 140, 160, 180);
+	    default:
+		return Set.of(0);
+	}
+    }
+
+    public static Set<Integer> getValidDiametralPitches()
+    {
+	    return validDiametralPitches;
+    }
+
+    public static Set<Double> getValidPressureAngles()
+    {
+	    return validPressureAngles;
     }
 }
