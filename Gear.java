@@ -41,6 +41,7 @@ public class Gear
 	m_circularPitch = Math.PI / m_diametralPitch;
     }
 
+
     // Drive the gear from a source
     public void drive(float rpm)
     {
@@ -59,14 +60,20 @@ public class Gear
         }
     }
 
-    @Override
     // dump statistics about the gear
+    @Override
     public String toString()
     {
-        String result = String.format("Number of Teeth: [%d] \nPitch Diameter: [%.2f] \nFace Width: [%.2f]\n"
-                + "Circular Thickness: [%.2f] \nCircular Pitch: [%.2f] \nDiametral Pitch [%.2f]\n",
-                m_numberOfTeeth, m_pitchDiameter, m_faceWidth, m_circularThickness, m_circularPitch,
-                m_diametralPitch);
+        String result = String.format("Diametral Pitch [%d]\n" +
+                "Number of Teeth: [%d]\n" +
+                "Pressure Angle: [%.2f]\n" +
+		"Pitch Diameter: [%.2f]\n" +
+		"Face Width: [%.2f]\n" +
+		"Addendum: [%.2f]\n" +
+		"Dedendum: [%.2f]\n" +
+		"Circular Pitch: [%.2f]\n",
+                m_diametralPitch, m_numberOfTeeth, m_pressureAngle,  m_pitchDiameter, m_faceWidth,
+	        m_addendum, m_dedendum, m_circularPitch);
 
         return result;
     }
