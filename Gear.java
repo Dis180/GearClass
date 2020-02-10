@@ -9,30 +9,36 @@
 
 public class Gear
 {
-
     // Values used by all gears
     // Initiate to '-1' to represent not set
-    private int m_numberOfTeeth = -1;
-    private double m_pitchDiameter = -1;
-    private double m_faceWidth = -1;
-    private double m_circularThickness = -1;
-    private double m_circularPitch = -1;
-    private double m_diametralPitch = -1;
-    private float m_rpm = -1;
+    private int m_numberOfTeeth = -1;		// Settable (but can only take certain values)
+    private int m_diametralPitch = -1;		// Settable (but can only take certain values)
+    private double m_pressureAngle = -1;	// Settable (but can only take certain values)
+    private double m_pitchDiameter = -1;	// Not settable (from numberOfTeeth and diametralPitch)
+    private double m_faceWidth = -1;		// Not settable (from diametralPitch)
+    private double m_addendum = -1;		// Not settable (from diametralPitch)
+    private double m_dedendum = -1;		// Not settable (from diametralPitch)
+    private double m_circularPitch = -1;	// Not settable (from diametralPitch)
+    private double m_rpm = -1;			// Not settable (must be driven)
 
     // Next gear in the train
     private Gear m_nextGear = null;
 
+
     // Constructor with specifying paramters
-	public Gear(int teeth, double pitchDiameter, double faceWidth, double circularThickness,
-            double circularPitch, double diametralPitch)
+    public Gear(int diametralPitch, int numberOfTeeth, double pressureAngle)
     {
-        this.m_numberOfTeeth = teeth;
-		this.m_pitchDiameter = pitchDiameter;
-		this.m_faceWidth = faceWidth;
-		this.m_circularThickness = circularThickness;
-		this.m_circularPitch = circularPitch;
-		this.m_diametralPitch = diametralPitch;
+	// User settable parameters
+	m_diametralPitch = diametralPitch;
+        m_numberOfTeeth = numberOfTeeth;
+	m_pressureAngle = pressureAngle;
+
+	// Calculated parameters
+	m_pitchDiameter = (double)(m_numberOfTeeth / m_diametralPitch);
+	m_faceWidth = 12.0 / m_diametralPitch;
+	m_addendum = 1.0 / m_diametralPitch;
+	m_dedendum = 1.25 / m_diametralPitch;
+	m_circularPitch = Math.PI / m_diametralPitch;
     }
 
     // Drive the gear from a source
