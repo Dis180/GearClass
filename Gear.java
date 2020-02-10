@@ -26,7 +26,7 @@ public class Gear
     // Valid diametral pitches
     private static final Set<Integer> validDiametralPitches = Set.of(32, 24, 20, 16, 12, 10, 8, 6, 5);
 
-    // Valid numbers of teeth
+    // Valid numbers of teeth (function instead of variable since values depend on diametral pitch)
     private static Set<Integer> getValidNumbersOfTeeth(int diametralPitch)
     {
 	switch (diametralPitch)
@@ -73,24 +73,9 @@ public class Gear
     public Gear(int diametralPitch, int numberOfTeeth, double pressureAngle)
     {
 	// User settable parameters
-	if (validDiametralPitches.contains(diametralPitch)) m_diametralPitch = diametralPitch;
-	else 
-	{
-		System.err.println("Not a valid diametral pitch, using a default value of 16.");
-		m_diametralPitch = 16;
-	}
-        if (getValidNumbersOfTeeth(m_diametralPitch).contains(numberOfTeeth)) m_numberOfTeeth = numberOfTeeth;
-	else 
-	{
-		System.err.println("Not a valid number of teeth for the given diametral pitch, using a default value of 18.");
-		m_numberOfTeeth = 18;
-	}
-	if (validPressureAngles.contains(pressureAngle)) m_pressureAngle = pressureAngle;
-	else 
-	{
-		System.err.println("Not a valid pressure angle, using a default value of 20.");
-		m_pressureAngle = 20.0;
-	}
+	setDiametralPitch(diametralPitch);
+        setNumberOfTeeth(numberOfTeeth);
+	setPressureAngle(pressureAngle);
 
 	// Calculated parameters
 	m_pitchDiameter = (double)(m_numberOfTeeth / m_diametralPitch);
@@ -147,7 +132,42 @@ public class Gear
 
     public void setNumberOfTeeth(int m_numberOfTeeth)
     {
-        this.m_numberOfTeeth = m_numberOfTeeth;
+        if (getValidNumbersOfTeeth(m_diametralPitch).contains(m_numberOfTeeth)) this.m_numberOfTeeth = m_numberOfTeeth;
+	else 
+	{
+		System.err.println("Not a valid number of teeth for the given diametral pitch, using a default value of 18.");
+		this.m_numberOfTeeth = 18;
+	}
+    }
+
+    public int getDiametralPitch()
+    {
+        return m_diametralPitch;
+    }
+
+    public void setDiametralPitch(int m_diametralPitch)
+    {
+	if (validDiametralPitches.contains(m_diametralPitch)) this.m_diametralPitch = m_diametralPitch;
+	else 
+	{
+		System.err.println("Not a valid diametral pitch, using a default value of 16.");
+		this.m_diametralPitch = 16;
+	}
+    }
+
+    public double getPressureAngle()
+    {
+        return m_pressureAngle;
+    }
+
+    public void setPressureAngle(double m_pressureAngle)
+    {
+	if (validPressureAngles.contains(m_pressureAngle)) this.m_pressureAngle = m_pressureAngle;
+	else 
+	{
+		System.err.println("Not a valid pressure angle, using a default value of 20.");
+		this.m_pressureAngle = 20.0;
+	}
     }
 
     public double getPitchDiameter()
@@ -155,29 +175,19 @@ public class Gear
         return m_pitchDiameter;
     }
 
-    public void setPitchDiameter(double m_pitchDiameter)
-    {
-        this.m_pitchDiameter = m_pitchDiameter;
-    }
-
     public double getFaceWidth()
     {
         return m_faceWidth;
     }
 
-    public void setFaceWidth(double m_faceWidth)
+    public double getAddendum()
     {
-        this.m_faceWidth = m_faceWidth;
+        return m_addendum;
     }
 
-    public double getCircularThickness()
+    public double getDedendum()
     {
-        return m_circularThickness;
-    }
-
-    public void setCircularThickness(double m_circularThickness)
-    {
-        this.m_circularThickness = m_circularThickness;
+        return m_dedendum;
     }
 
     public double getCircularPitch()
@@ -185,29 +195,9 @@ public class Gear
         return m_circularPitch;
     }
 
-    public void setCircularPitch(double m_circularPitch)
-    {
-        this.m_circularPitch = m_circularPitch;
-    }
-
-    public double getDiametralPitch()
-    {
-        return m_diametralPitch;
-    }
-
-    public void setDiametralPitch(double m_diametralPitch)
-    {
-        this.m_diametralPitch = m_diametralPitch;
-    }
-
     public double getRpm()
     {
         return m_rpm;
-    }
-
-    public void setRpm(double m_rpm)
-    {
-        this.m_rpm = m_rpm;
     }
 
     public Gear getNextGear()
