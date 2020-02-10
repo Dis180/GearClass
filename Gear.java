@@ -102,14 +102,14 @@ public class Gear
 
 
     // Drive the gear from a source
-    public void drive(float rpm)
+    public void drive(double rpm)
     {
         m_rpm = rpm;
         m_nextGear.drive(m_rpm, m_numberOfTeeth);
     }
 
     // Drive the gear from a pervious gear and turn next in line if exists
-    void drive(float rpm, int teeth)
+    void drive(double rpm, int teeth)
     {
         // TODO: This is how google told me to calculate it?
         m_rpm = (rpm * teeth) / m_numberOfTeeth;
@@ -205,7 +205,7 @@ public class Gear
         return m_rpm;
     }
 
-    public void setRpm(float m_rpm)
+    public void setRpm(double m_rpm)
     {
         this.m_rpm = m_rpm;
     }
