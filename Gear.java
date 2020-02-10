@@ -21,6 +21,48 @@ public class Gear
     private double m_circularPitch = -1;	// Not settable (from diametralPitch)
     private double m_rpm = -1;			// Not settable (must be driven)
 
+    // Valid diametral pitches
+    private int[] validDiametralPitches = {32, 24, 20, 16, 12, 10, 8, 6, 5};
+
+    // Valid numbers of teeth
+    private int[] getValidNumbersOfTeeth(int diametralPitch)
+    {
+	switch (diametralPitch)
+	{
+	    case validDiametralPitches[0]:
+		return {12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128};
+	    case validDiametralPitches[1]:
+		return {12, 15, 18, 21, 24, 27, 30, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144};
+	    case validDiametralPitches[2]:
+		return {12, 14, 15, 16, 18, 20, 24, 25, 30, 35, 40, 45, 50, 60, 70, 80, 84, 90, 100,
+		        120, 140, 160, 180, 200};
+	    case validDiametralPitches[3]:
+		return {12, 14, 15, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 60, 64, 72, 80, 96,
+		        128, 144, 160, 192};
+	    case validDiametralPitches[4]:
+		return {12, 13, 14, 15, 16, 18, 20, 21, 24, 28, 30, 36, 42, 48, 54, 60, 66, 72, 84,
+		        96, 108, 120, 132, 144, 168, 192, 216};
+	    case validDiametralPitches[5]:
+		return {12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 48, 50, 55, 60, 70, 80,
+		        90, 100, 120, 140, 160, 200};
+	    case validDiametralPitches[6]:
+		return {12, 14, 15, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44, 48, 56, 60, 64, 72, 80,
+		        88, 96, 112, 120, 128};
+	    case validDiametralPitches[7]:
+		return {12, 14, 15, 16, 18, 21, 24, 27, 30, 33, 36, 42, 48, 54, 60, 66, 72, 84, 96,
+		        108, 120};
+	    case validDiametralPitches[8]:
+		return {12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 50, 60, 70, 80, 100, 110,
+		        120, 140, 160, 180};
+	    default:
+		return null;
+	}
+    }
+
+    // Valid pressure angles
+    private double[] validPressureAngles = {14.5, 20, 25};
+	    
+
     // Next gear in the train
     private Gear m_nextGear = null;
 
