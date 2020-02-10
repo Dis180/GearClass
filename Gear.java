@@ -7,6 +7,8 @@
  * @author Sam Rennu
  */
 
+import java.util.Set;
+
 public class Gear
 {
     // Values used by all gears
@@ -22,45 +24,45 @@ public class Gear
     private double m_rpm = -1;			// Not settable (must be driven)
 
     // Valid diametral pitches
-    private int[] validDiametralPitches = {32, 24, 20, 16, 12, 10, 8, 6, 5};
+    private static final Set<Integer> validDiametralPitches = Set.of(32, 24, 20, 16, 12, 10, 8, 6, 5);
 
     // Valid numbers of teeth
-    private int[] getValidNumbersOfTeeth(int diametralPitch)
+    private static Set<Integer> getValidNumbersOfTeeth(int diametralPitch)
     {
 	switch (diametralPitch)
 	{
-	    case validDiametralPitches[0]:
-		return {12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128};
-	    case validDiametralPitches[1]:
-		return {12, 15, 18, 21, 24, 27, 30, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144};
-	    case validDiametralPitches[2]:
-		return {12, 14, 15, 16, 18, 20, 24, 25, 30, 35, 40, 45, 50, 60, 70, 80, 84, 90, 100,
-		        120, 140, 160, 180, 200};
-	    case validDiametralPitches[3]:
-		return {12, 14, 15, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 60, 64, 72, 80, 96,
-		        128, 144, 160, 192};
-	    case validDiametralPitches[4]:
-		return {12, 13, 14, 15, 16, 18, 20, 21, 24, 28, 30, 36, 42, 48, 54, 60, 66, 72, 84,
-		        96, 108, 120, 132, 144, 168, 192, 216};
-	    case validDiametralPitches[5]:
-		return {12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 48, 50, 55, 60, 70, 80,
-		        90, 100, 120, 140, 160, 200};
-	    case validDiametralPitches[6]:
-		return {12, 14, 15, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44, 48, 56, 60, 64, 72, 80,
-		        88, 96, 112, 120, 128};
-	    case validDiametralPitches[7]:
-		return {12, 14, 15, 16, 18, 21, 24, 27, 30, 33, 36, 42, 48, 54, 60, 66, 72, 84, 96,
-		        108, 120};
-	    case validDiametralPitches[8]:
-		return {12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 50, 60, 70, 80, 100, 110,
-		        120, 140, 160, 180};
+	    case validDiametralPitches.toArray()[0]:
+		return Set.of(12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128);
+	    case validDiametralPitches.toArray()[1]:
+		return Set.of(12, 15, 18, 21, 24, 27, 30, 36, 42, 48, 54, 60, 72, 84, 96, 120, 144);
+	    case validDiametralPitches.toArray()[2]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 30, 35, 40, 45, 50, 60, 70, 80, 84, 90, 100,
+		        120, 140, 160, 180, 200);
+	    case validDiametralPitches.toArray()[3]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 60, 64, 72, 80, 96,
+		        128, 144, 160, 192);
+	    case validDiametralPitches.toArray()[4]:
+		return Set.of(12, 13, 14, 15, 16, 18, 20, 21, 24, 28, 30, 36, 42, 48, 54, 60, 66, 72, 84,
+		        96, 108, 120, 132, 144, 168, 192, 216);
+	    case validDiametralPitches.toArray()[5]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 48, 50, 55, 60, 70, 80,
+		        90, 100, 120, 140, 160, 200);
+	    case validDiametralPitches.toArray()[6]:
+		return Set.of(12, 14, 15, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44, 48, 56, 60, 64, 72, 80,
+		        88, 96, 112, 120, 128);
+	    case validDiametralPitches.toArray()[7]:
+		return Set.of(12, 14, 15, 16, 18, 21, 24, 27, 30, 33, 36, 42, 48, 54, 60, 66, 72, 84, 96,
+		        108, 120);
+	    case validDiametralPitches.toArray()[8]:
+		return Set.of(12, 14, 15, 16, 18, 20, 24, 25, 28, 30, 35, 40, 45, 50, 60, 70, 80, 100, 110,
+		        120, 140, 160, 180);
 	    default:
-		return null;
+		return Set.of(0);
 	}
     }
 
     // Valid pressure angles
-    private double[] validPressureAngles = {14.5, 20, 25};
+    private static final Set<Double> validPressureAngles = Set.of(14.5, 20.0, 25.0);
 	    
 
     // Next gear in the train
@@ -71,9 +73,24 @@ public class Gear
     public Gear(int diametralPitch, int numberOfTeeth, double pressureAngle)
     {
 	// User settable parameters
-	m_diametralPitch = diametralPitch;
-        m_numberOfTeeth = numberOfTeeth;
-	m_pressureAngle = pressureAngle;
+	if (validDiametralPitches.contains(diametralPitch)) m_diametralPitch = diametralPitch;
+	else 
+	{
+		System.err.println("Not a valid diametral pitch, using a default value of 16.");
+		m_diametralPitch = 16;
+	}
+        if (getValidNumbersOfTeeth(m_diametralPitch).contains(numberOfTeeth)) m_numberOfTeeth = numberOfTeeth;
+	else 
+	{
+		System.err.println("Not a valid number of teeth for the given diametral pitch, using a default value of 18.");
+		m_numberOfTeeth = 18;
+	}
+	if (validPressureAngles.contains(pressureAngle)) m_pressureAngle = pressureAngle;
+	else 
+	{
+		System.err.println("Not a valid pressure angle, using a default value of 20.");
+		m_pressureAngle = 20.0;
+	}
 
 	// Calculated parameters
 	m_pitchDiameter = (double)(m_numberOfTeeth / m_diametralPitch);
